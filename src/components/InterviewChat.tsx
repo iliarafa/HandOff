@@ -45,9 +45,10 @@ export default function InterviewChat({
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-[720px] flex-1 flex-col px-6">
+    <div className="mx-auto flex w-full max-w-[720px] flex-1 flex-col overflow-hidden px-6">
       {/* Messages */}
-      <div className="flex flex-1 flex-col gap-6 overflow-y-auto py-8">
+      <div className="min-h-0 flex-1 overflow-y-auto py-8">
+        <div className="flex flex-col gap-6">
         {messages.map((msg, i) => (
           <div
             key={i}
@@ -94,11 +95,12 @@ export default function InterviewChat({
           </div>
         )}
         <div ref={bottomRef} />
+        </div>
       </div>
 
       {/* Input area */}
       {stage === "interview" && (
-        <div className="flex items-end gap-3 border-t border-[#1a1a1a] py-5">
+        <div className="flex shrink-0 items-center gap-2 pb-8 pr-4 pt-4">
           <div className="relative flex-1">
             <textarea
               ref={inputRef}
@@ -119,20 +121,22 @@ export default function InterviewChat({
           <button
             onClick={onSend}
             disabled={loading || !input.trim()}
-            className={`shrink-0 border border-[#222] px-5 py-3 font-mono text-xs tracking-[0.08em] transition-all ${
+            className={`shrink-0 p-2 transition-all ${
               input.trim() && !loading
-                ? "cursor-pointer bg-[#e8e0d0] text-[#0a0a0a]"
-                : "cursor-default bg-[#111] text-[#444]"
+                ? "cursor-pointer text-[#e8e0d0]"
+                : "cursor-default text-[#444]"
             }`}
           >
-            SEND
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
           </button>
         </div>
       )}
 
       {/* Generating spinner */}
       {stage === "generating" && (
-        <div className="flex items-center gap-3 border-t border-[#1a1a1a] py-6">
+        <div className="flex shrink-0 items-center gap-3 border-t border-[#1a1a1a] py-6">
           <div className="h-4 w-4 animate-spin-fast rounded-full border-2 border-[#333] border-t-[#fbbf24]" />
           <span className="font-mono text-xs tracking-[0.08em] text-[#666]">
             COMPILING HANDOFF DOCUMENT...

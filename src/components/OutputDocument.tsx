@@ -63,7 +63,7 @@ export default function OutputDocument({ docContent, onReset }: OutputDocumentPr
       </div>
 
       {/* Document renderer */}
-      <div className="flex-1 overflow-y-auto break-words border border-[#1a1a1a] bg-[#080808] p-8 font-mono text-[13px] leading-[1.8] text-[#bbb] whitespace-pre-wrap">
+      <div className="flex-1 overflow-y-auto break-words border border-[#1a1a1a] bg-[#080808] p-8 font-mono text-[13px] leading-[1.8] text-[#bbb] whitespace-pre-wrap" style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 32px)" }}>
         {docContent.split("\n").map((line, i) => {
           if (line.startsWith("# "))
             return (

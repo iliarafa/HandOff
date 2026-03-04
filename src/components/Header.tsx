@@ -14,7 +14,7 @@ export default function Header({ stage, onReset }: HeaderProps) {
         : "bg-neutral-500";
 
   return (
-    <div className="flex items-center justify-between border-b border-[#1e1e1e] bg-[#0d0d0d] px-8 py-5">
+    <div className="flex items-center justify-between bg-[#0d0d0d] px-8 py-5">
       <div className="flex items-center gap-3">
         <div className={`h-2 w-2 rounded-full ${dotColor}`} />
         <span className="font-mono text-[13px] tracking-[0.08em] text-[#888]">

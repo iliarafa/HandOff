@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="#0a0a0a"/>
+
+  <!-- H lettermark with split crossbar -->
+  <!-- Left vertical stroke -->
+  <rect x="310" y="280" width="88" height="464" rx="6" fill="#e8e0d0"/>
+
+  <!-- Right vertical stroke -->
+  <rect x="626" y="280" width="88" height="464" rx="6" fill="#e8e0d0"/>
+
+  <!-- Left half of crossbar (connects to left stroke, stops before center) -->
+  <rect x="398" y="468" width="100" height="88" rx="6" fill="#e8e0d0"/>
+
+  <!-- Right half of crossbar (connects to right stroke, stops before center) -->
+  <rect x="526" y="468" width="100" height="88" rx="6" fill="#e8e0d0"/>
+</svg>

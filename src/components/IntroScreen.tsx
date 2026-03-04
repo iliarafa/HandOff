@@ -10,7 +10,7 @@ const STATS = [
 
 export default function IntroScreen({ onStart }: IntroScreenProps) {
   return (
-    <div className="flex flex-1 animate-fade-in flex-col items-center justify-center px-8 py-16 text-center">
+    <div className="flex flex-1 animate-fade-in flex-col items-center justify-center px-8 py-16 text-center" style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 64px)" }}>
       <div className="mb-8 font-mono text-[11px] tracking-[0.2em] text-[#555]">
         v1.0 — HANDOFF DOCUMENT GENERATOR
       </div>

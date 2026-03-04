@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Capacitor } from "@capacitor/core";
+import { StatusBar, Style } from "@capacitor/status-bar";
+import { Keyboard } from "@capacitor/keyboard";
 import Header from "./components/Header";
 import IntroScreen from "./components/IntroScreen";
 import InterviewChat from "./components/InterviewChat";
@@ -18,6 +21,26 @@ export default function App() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [docContent, setDocContent] = useState("");
+
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) {
+      StatusBar.setStyle({ style: Style.Dark });
+      StatusBar.setOverlaysWebView({ overlay: false });
+
+      Keyboard.addListener("keyboardWillShow", (info) => {
+        setKeyboardHeight(info.keyboardHeight);
+      });
+      Keyboard.addListener("keyboardWillHide", () => {
+        setKeyboardHeight(0);
+      });
+
+      return () => {
+        Keyboard.removeAllListeners();
+      };
+    }
+  }, []);
 
   const startInterview = async () => {
     setStage("interview");
@@ -98,7 +121,10 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#0a0a0a] font-serif text-[#e8e0d0]">
+    <div
+      className="flex flex-col overflow-hidden bg-[#0a0a0a] font-serif text-[#e8e0d0]"
+      style={{ height: keyboardHeight ? `calc(100vh - ${keyboardHeight}px)` : '100vh' }}
+    >
       <Header stage={stage} onReset={reset} />
       {stage === "intro" && <IntroScreen onStart={startInterview} />}
       {(stage === "interview" || stage === "generating") && (
